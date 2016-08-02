@@ -2,7 +2,10 @@ FROM ubuntu:trusty
 
 MAINTAINER Julian Nonino <noninojulian@outlook.com>
 
-RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u101-b13/jdk-8u101-linux-x64.tar.gz && \
+RUN apt-get update && \
+    apt-get install -y wget && \
+    rm -rf /var/lib/apt/lists/* && \
+    wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u101-b13/jdk-8u101-linux-x64.tar.gz && \
     sudo tar -zxf jdk-8u101-linux-x64.tar.gz -C /opt && \
     sudo ln -s /opt/jdk1.8.0_101/bin/java /usr/bin/java && \
     sudo ln -s /opt/jdk1.8.0_101/bin/javac /usr/bin/javac && \
