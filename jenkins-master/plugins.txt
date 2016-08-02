@@ -3,7 +3,7 @@ job-dsl:1.48
 jobConfigHistory:2.15
 nested-view:1.14
 credentials:2.1.4
-greenballs:1.14
+greenballs:1.15
 claim:2.8
 ci-game:1.25
 emotional-jenkins-plugin:1.2

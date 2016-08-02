@@ -55,6 +55,6 @@ Use this command to lsit the containers that the previous command has started.
 
 To scale slave service:
 
-    docker-compose scale slave=5
+    docker-compose --file jenkins-cluster.yml scale slave=5
     
 After that command you should see five slaves connected to Jenkins.
