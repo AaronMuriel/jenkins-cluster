@@ -1,0 +1,79 @@
+<project>
+	<actions/>
+	<description/>
+	<keepDependencies>false</keepDependencies>
+	<properties>
+		<hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.28"/>
+		<com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.15.0">
+		<doNotScan>false</doNotScan>
+		</com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+	</properties>
+	<scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.4">
+		<configVersion>2</configVersion>
+		<userRemoteConfigs>
+			<hudson.plugins.git.UserRemoteConfig>
+				<name>origin</name>
+				<refspec>+refs/heads/master:refs/remotes/origin/master</refspec>
+				<url>
+					http://git-amr-3.devtools.intel.com/gerrit/p/iotsecmgmt-cm.git
+				</url>
+				<credentialsId>teamforge-git-credentials</credentialsId>
+			</hudson.plugins.git.UserRemoteConfig>
+		</userRemoteConfigs>
+		<branches>
+			<hudson.plugins.git.BranchSpec>
+				<name>refs/heads/master</name>
+			</hudson.plugins.git.BranchSpec>
+		</branches>
+		<doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+		<submoduleCfg class="list"/>
+		<extensions/>
+	</scm>
+	<assignedNode>master</assignedNode>
+	<canRoam>false</canRoam>
+	<disabled>false</disabled>
+	<blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+	<blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+	<triggers>
+		<hudson.triggers.SCMTrigger>
+			<spec>H/3 * * * *</spec>
+			<ignorePostCommitHooks>false</ignorePostCommitHooks>
+		</hudson.triggers.SCMTrigger>
+	</triggers>
+	<concurrentBuild>false</concurrentBuild>
+	<builders>
+		<hudson.tasks.Shell>
+			<command>chmod +x gradlew</command>
+		</hudson.tasks.Shell>
+		<hudson.plugins.gradle.Gradle plugin="gradle@1.24">
+			<description/>
+			<switches/>
+			<tasks>clean build</tasks>
+			<rootBuildScriptDir/>
+			<buildFile/>
+			<gradleName>Gradle 2.12</gradleName>
+			<useWrapper>true</useWrapper>
+			<makeExecutable>true</makeExecutable>
+			<fromRootBuildScriptDir>true</fromRootBuildScriptDir>
+			<useWorkspaceAsHome>false</useWorkspaceAsHome>
+		</hudson.plugins.gradle.Gradle>
+		<javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.44">
+			<targets>jobs/seedjobs.groovy</targets>
+			<usingScriptText>false</usingScriptText>
+			<ignoreExisting>false</ignoreExisting>
+			<removedJobAction>DELETE</removedJobAction>
+			<removedViewAction>DELETE</removedViewAction>
+			<lookupStrategy>JENKINS_ROOT</lookupStrategy>
+			<additionalClasspath>src/main/groovy</additionalClasspath>
+		</javaposse.jobdsl.plugin.ExecuteDslScripts>
+	</builders>
+	<publishers>
+		<hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.13">
+			<testResults>build/test-results/**/*.xml</testResults>
+			<keepLongStdio>false</keepLongStdio>
+			<healthScaleFactor>1.0</healthScaleFactor>
+			<allowEmptyResults>true</allowEmptyResults>
+		</hudson.tasks.junit.JUnitResultArchiver>
+	</publishers>
+	<buildWrappers/>
+</project>

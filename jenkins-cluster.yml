@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  master:
+    image: jenkins-master
+    build: ./jenkins-master
+    ports:
+      - "8080:8080"
+  slave:
+    image: jenkins-slave
+    build: ./jenkins-slave
+    links:
+      - master:master
