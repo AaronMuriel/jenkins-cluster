@@ -24,14 +24,14 @@ ENV ANT_HOME /opt/apache-ant-1.9.7
 ENV PATH $ANT_HOME/bin:$PATH
 
 ENV JENKINS_SWARM_VERSION 2.2
-ENV HOME /home/jenkins-slave
-RUN useradd -c "Jenkins Slave User" -d $HOME -m jenkins-slave
+ENV HOME /home/ubuntu-jenkins-slave
+RUN useradd -c "Jenkins Slave User" -d $HOME -m ubuntu-jenkins-slave
 
 RUN wget http://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$JENKINS_SWARM_VERSION/swarm-client-$JENKINS_SWARM_VERSION-jar-with-dependencies.jar && \
     mv swarm-client-$JENKINS_SWARM_VERSION-jar-with-dependencies.jar $HOME/swarm-client-jar-with-dependencies.jar
 
-USER jenkins-slave
-VOLUME /home/jenkins-slave
+USER ubuntu-jenkins-slave
+VOLUME /home/ubuntu-jenkins-slave
 
 #ENV JENKINS_MASTER -  The complete target Jenkins URL like 'http://server:8080/jenkins/'. If this option is specified, auto-discovery will be skipped
 COPY start_slave.sh /usr/local/bin/start_slave.sh
