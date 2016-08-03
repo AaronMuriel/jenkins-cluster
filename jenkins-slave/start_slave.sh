@@ -8,6 +8,6 @@ if [ ! -z "$JENKINS_MASTER" ]; then
 fi
 
 # Number of executors - One executor per Docker container
-PARAMS="$PARAMS -executors 1 -username jenkins -password jenkins"
+PARAMS="$PARAMS -executors 1"
 
 java -jar $HOME/swarm-client-jar-with-dependencies.jar $PARAMS -fsroot $HOME
