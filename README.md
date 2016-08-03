@@ -4,8 +4,6 @@ Jenkins Cluster Using Docker
 
 ## Jenkins Master ##
 
-Based on the official Jenkins Docker Image version 2.7.1.
-
 There are no executors in this node.
 
 The following plugins are installed automatically:
@@ -20,8 +18,11 @@ The following plugins are installed automatically:
 - ci-game:1.25
 - emotional-jenkins-plugin:1.2
 - git:2.5.2
+- subversion:2.6
 - clone-workspace-scm:0.6
 - multiple-scms:0.6
+- ant:1.3
+- maven-plugin:2.13
 - gradle:1.25
 - ivy:1.26
 - checkstyle:3.46
@@ -30,6 +31,14 @@ The following plugins are installed automatically:
 - jacoco:2.0.1
 - cobertura:1.9.8
 - tasks:4.49
+- junit:1.15
+- javadoc:1.4
+- windows-slaves:1.1
+
+### Start Master Jenkins ###
+
+    docker build -t jenkins-master /jenkins-master
+    docker run --name jenkins -p 8080:8080 jenkins-master -d
 
 ## Jenkins Slaves ##
 
@@ -39,22 +48,22 @@ Ubuntu Trusty (14.04) slaves with the following tools installed:
 - Maven 3.3.9
 - Ant 1.9.7
 
-## Run Jenkins Cluster ##
+### Start Jenkins Slaves ###
 
-To start a Jenkins cluster run this command.
+Build the Docker Images for Jenkins Slave
 
-    docker-compose --file jenkins-cluster.yml up -d
+    docker build -t jenkins-slave /jenkins-slave
+
+If Jenkins Master is running in another server, point the slave to that server.
+
+    docker run -d jenkins-slave -master http://<JENKINS_MASTER_ADDRESS>:8080
+
+If the Jenkins Slave container will run in the same server than Jenkins Master container, just link them.
+
+    docker run -d --link jenkins:jenkins jenkins-slave
 
 ## List Containers ##
 
-Use this command to lsit the containers that the previous command has started.
-    
-    docker-compose ps
+Use this command to list running containers
 
-## Scaling Jenkins Slaves ##
-
-To scale slave service:
-
-    docker-compose --file jenkins-cluster.yml scale slave=5
-    
-After that command you should see five slaves connected to Jenkins.
+    docker ps

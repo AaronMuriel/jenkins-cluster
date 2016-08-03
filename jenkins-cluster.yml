@@ -1,13 +1,14 @@
 version: '2'
 
 services:
-  master:
-    image: jnonino/jenkins-master
+  jenkins:
+    image: jenkins-master
     build: ./jenkins-master
+    container_name: jenkins
     ports:
       - "8080:8080"
   slave:
-    image: jnonino/jenkins-slave
+    image: jenkins-slave
     build: ./jenkins-slave
     links:
-      - master:master
+      - jenkins:jenkins
