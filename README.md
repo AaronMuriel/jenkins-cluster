@@ -37,8 +37,8 @@ The following plugins are installed automatically:
 
 ### Start Master Jenkins ###
 
-    docker build -t jenkins-master /jenkins-master
-    docker run --name jenkins -p 8080:8080 jenkins-master -d
+    docker build -t jenkins-master jenkins-master/
+    docker run -d --name jenkins -p 8080:8080 jenkins-master -d
 
 ## Jenkins Slaves ##
 
@@ -52,7 +52,7 @@ Ubuntu Trusty (14.04) slaves with the following tools installed:
 
 Build the Docker Images for Jenkins Slave
 
-    docker build -t jenkins-slave /jenkins-slave
+    docker build -t jenkins-slave jenkins-slave/
 
 If Jenkins Master is running in another server, point the slave to that server.
 
