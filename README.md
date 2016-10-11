@@ -21,6 +21,13 @@ Run the container
     
     docker run -d --name jenkins --restart=always -p 8080:8080 -p 50000:50000 -v ~/jenkins_data:/var/jenkins_home jenkins-master 
 
+### Adding jobs by default ###
+
+In order to have Jenkins jobs automatically configured when you run the container, follow these steps:  
+
+1. Inside the jobs folder (jenkins-master/jobs) add a new folder named with the name of the new job.  
+2. Inside the folder created in the previous step, add a new file named config.xml. That file should contain all the configuration of new job.
+
 ## Jenkins Linux Slaves ##
 
 Jenkins Linux slaves are based in Ubuntu Xenial (16.04) with the following tools installed by default:
