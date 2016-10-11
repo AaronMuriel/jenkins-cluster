@@ -10,7 +10,12 @@ fi
 # Setting defauls Username and Passwords
 PARAMS="$PARAMS -username jenkins -password jenkins"
 
-# Number of executors - One executor per Docker container
-PARAMS="$PARAMS -executors 1"
+# If the executors param is not specified, set to 1 executor by default
+if [[ "$@" != *"-executors "* ]]; then
+	PARAMS="$PARAMS -executors 1"
+fi
 
-exec java $JAVA_OPTS -jar $HOME/swarm-client-jar-with-dependencies.jar -fsroot $HOME $PARAMS "$@"
+# Slave Label
+PARAMS="$PARAMS -labels ubuntu-slave"
+
+exec java $JAVA_OPTS -jar /usr/share/jenkins/swarm-client-jar-with-dependencies.jar -fsroot $HOME $PARAMS "$@"

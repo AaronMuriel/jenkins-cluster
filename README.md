@@ -4,66 +4,46 @@ Jenkins Cluster Using Docker
 
 ## Jenkins Master ##
 
-There are no executors in this node.
-
-The following plugins are installed automatically:
-
-- swarm:2.2
-- job-dsl:1.48
-- jobConfigHistory:2.15
-- nested-view:1.14
-- credentials:2.1.4
-- greenballs:1.14
-- claim:2.8
-- ci-game:1.25
-- emotional-jenkins-plugin:1.2
-- git:2.5.2
-- subversion:2.6
-- clone-workspace-scm:0.6
-- multiple-scms:0.6
-- ant:1.3
-- maven-plugin:2.13
-- gradle:1.25
-- ivy:1.26
-- checkstyle:3.46
-- pmd:3.45
-- findbugs:4.65
-- jacoco:2.0.1
-- cobertura:1.9.8
-- tasks:4.49
-- junit:1.15
-- javadoc:1.4
-- windows-slaves:1.1
+This is the Jenkins master node. There are no executors in this node, so you need to attach one or more slaves to run the jobs.
 
 ### Start Master Jenkins ###
 
+Create a folder to store Jenkins data files, so the container can be reseted without losing information.  
+   
+    mkdir ~/jenkins_data
+    chmod 777 ~/jenkins_data
+    
+Build the Docker Image  
+    
     docker build -t jenkins-master jenkins-master/
-    docker run -d --name jenkins -p 8080:8080 jenkins-master -d
+    
+Run the container  
+    
+    docker run -d --name jenkins --restart=always -p 8080:8080 -p 50000:50000 -v ~/jenkins_data:/var/jenkins_home jenkins-master 
 
-## Jenkins Slaves ##
+## Jenkins Linux Slaves ##
 
-Ubuntu Trusty (14.04) slaves with the following tools installed:
+Jenkins Linux slaves are based in Ubuntu Xenial (16.04) with the following tools installed by default:
 
 - Java JDK 8 update 101
 - Maven 3.3.9
 - Ant 1.9.7
+- Python 2.7.12
+- Python PIP 8.1.2
+
+The slave will be labeled "ubuntu-slave".
 
 ### Start Jenkins Slaves ###
 
-Build the Docker Images for Jenkins Slave
+Create a folder to store slave files so you can keep them even if the container is restarted.  
+    
+    mkdir ~/jenkins_slave_data
+    chmod 777 ~/jenkins_slave_data
+
+Build the Docker Image
 
     docker build -t jenkins-slave jenkins-slave/
 
-If Jenkins Master is running in another server, point the slave to that server.
+Run the Jenkins Slave, you need to provide Jenkins Master URL and the number of executors this slave should have.  
 
-    docker run -d jenkins-slave -master http://<JENKINS_MASTER_ADDRESS>:8080
-
-If the Jenkins Slave container will run in the same server than Jenkins Master container, just link them.
-
-    docker run -d --link jenkins:jenkins jenkins-slave
-
-## List Containers ##
-
-Use this command to list running containers
-
-    docker ps
+    docker run -d --restart=always -v ~/jenkins_slave_data:/home/jenkins-slave/workspace jenkins-slave -master http://${JENKINS_MASTER_ADDRESS}:8080 -executors <NUMBER_OF_EXECUTORS>
