@@ -32,7 +32,7 @@ RUN echo 'Installing Docker Plugin' && \
     wget https://plugins.jetbrains.com/files/7793/25156/markdown-2016.1.20160405.zip -O markdown.zip -q && \
     unzip markdown.zip -d /home/developer/.IdeaIC2016.2/config/plugins/ && \
     rm markdown.zip && \
-    wget https://plugins.jetbrains.com/files/631/27089/python-162.43.zip -O /home/developer/.IdeaIC2016.2/config/plugins/PythonPlugin.zip && \
+    wget https://plugins.jetbrains.com/files/631/27089/python-162.43.zip -O PythonPlugin.zip && \
     unzip PythonPlugin.zip -d /home/developer/.IdeaIC2016.2/config/plugins/ && \
     rm PythonPlugin.zip
 
