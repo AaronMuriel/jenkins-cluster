@@ -1,4 +1,4 @@
-FROM base-build-environment
+FROM jnonino/base-build-environment
 MAINTAINER Julian Nonino <noninojulian@outlook.com>
 
 # Install Java 8 JDK Update 101
