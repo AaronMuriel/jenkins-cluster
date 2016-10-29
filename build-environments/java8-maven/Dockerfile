@@ -1,4 +1,4 @@
-FROM java8-base
+FROM jnonino/java8-base
 MAINTAINER Julian Nonino <noninojulian@outlook.com>
 
 # Install Ant 1.9.7
