@@ -1,4 +1,4 @@
-FROM jnonino/base-build-environment
+FROM ubuntu:xenial
 MAINTAINER Julian Nonino <noninojulian@outlook.com>
 
 ENV PYTHON_VERSION 2.7.12
