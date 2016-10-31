@@ -1,13 +1,13 @@
 FROM jnonino/java8-base
 MAINTAINER Julian Nonino <noninojulian@outlook.com>
 
-# Install Ant 1.9.7
-RUN wget http://mirrors.sonic.net/apache//ant/binaries/apache-ant-1.9.7-bin.tar.gz && \
-    tar -zxf apache-ant-1.9.7-bin.tar.gz -C /opt && \
-    ln -s /opt/apache-ant-1.9.7/bin/ant /usr/bin/ant && \
-    rm -rf apache-ant-1.9.7-bin.tar.gz
+# Install Maven 3.3.9
+RUN wget http://apache.mirrors.lucidnetworks.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz && \
+    tar -zxf apache-maven-3.3.9-bin.tar.gz -C /opt && \
+    ln -s /opt/apache-maven-3.3.9/bin/mvn /usr/bin/mvn && \
+    rm -rf apache-maven-3.3.9-bin.tar.gz
 
-ENV ANT_HOME /opt/apache-ant-1.9.7
+ENV MAVEN_HOME /opt/apache-maven-3.3.9
 
 # Set PATH environment variable
 ENV PATH $ANT_HOME/bin:$PATH

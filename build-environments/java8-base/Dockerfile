@@ -7,6 +7,7 @@ RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://down
     ln -s /opt/jdk1.8.0_101/bin/java /usr/bin/java && \
     ln -s /opt/jdk1.8.0_101/bin/javac /usr/bin/javac && \
     rm -rf jdk-8u101-linux-x64.tar.gz
+
 ENV JAVA_HOME /opt/jdk1.8.0_101
 
 # Set PATH environment variable adding Java 8 JDK
