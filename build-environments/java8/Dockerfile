@@ -13,6 +13,10 @@ RUN apt-get update && \
     ln -s /opt/jdk1.8.0_101/bin/java /usr/bin/java && \
     ln -s /opt/jdk1.8.0_101/bin/javac /usr/bin/javac && \
     rm -rf jdk-8u101-linux-x64.tar.gz && \
+    wget https://services.gradle.org/distributions/gradle-3.1-bin.zip && \
+    unzip gradle-3.1-bin.zip -d /opt && \
+    ln -s /opt/gradle-3.1/bin/gradle /usr/bin/gradle && \
+    rm -rf gradle-3.1-bin.zip && \
     wget http://apache.mirrors.lucidnetworks.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz && \
     tar -zxf apache-maven-3.3.9-bin.tar.gz -C /opt && \
     ln -s /opt/apache-maven-3.3.9/bin/mvn /usr/bin/mvn && \
@@ -23,8 +27,9 @@ RUN apt-get update && \
     rm -rf apache-ant-1.9.7-bin.tar.gz
 
 ENV JAVA_HOME /opt/jdk1.8.0_101
+ENV GRADLE_HOME /opt/gradle-3.1
 ENV MAVEN_HOME /opt/apache-maven-3.3.9
 ENV ANT_HOME /opt/apache-ant-1.9.7
 
 # Set PATH environment variable adding Java JDK, Maven and Ant
-ENV PATH $JAVA_HOME/bin:$MAVEN_HOME/bin:$ANT_HOME/bin:$PATH
+ENV PATH $JAVA_HOME/bin:$GRADLE_HOME/bin:$MAVEN_HOME/bin:$ANT_HOME/bin:$PATH
