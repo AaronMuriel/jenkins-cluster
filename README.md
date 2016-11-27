@@ -11,7 +11,7 @@ Create a folder to store Jenkins data files, so the container can be reseted wit
     
 Build the Docker Image  
     
-    docker build -t jenkins-master jenkins-master/
+    docker build -t jenkins-master jenkins-master
     
 Run the container  
     
