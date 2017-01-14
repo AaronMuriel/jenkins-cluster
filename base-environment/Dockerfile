@@ -8,12 +8,12 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Java 8 JDK Update 101
-RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u101-b13/jdk-8u101-linux-x64.tar.gz && \
-    tar -zxf jdk-8u101-linux-x64.tar.gz -C /opt && \
-    ln -s /opt/jdk1.8.0_101/bin/java /usr/bin/java && \
-    ln -s /opt/jdk1.8.0_101/bin/javac /usr/bin/javac && \
-    rm -rf jdk-8u101-linux-x64.tar.gz
-ENV JAVA_HOME /opt/jdk1.8.0_101
+RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jdk-8u111-linux-x64.tar.gz && \
+    tar -zxf jdk-8u111-linux-x64.tar.gz -C /opt && \
+    ln -s /opt/jdk1.8.0_111/bin/java /usr/bin/java && \
+    ln -s /opt/jdk1.8.0_111/bin/javac /usr/bin/javac && \
+    rm -rf jdk-8u111-linux-x64.tar.gz
+ENV JAVA_HOME /opt/jdk1.8.0_111
 
 # Install Maven 3.3.9
 RUN wget http://apache.mirrors.lucidnetworks.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz && \
@@ -23,11 +23,11 @@ RUN wget http://apache.mirrors.lucidnetworks.net/maven/maven-3/3.3.9/binaries/ap
 ENV MAVEN_HOME /opt/apache-maven-3.3.9
 
 # Install Ant 1.9.7
-RUN wget http://mirrors.sonic.net/apache//ant/binaries/apache-ant-1.9.7-bin.tar.gz && \
-    tar -zxf apache-ant-1.9.7-bin.tar.gz -C /opt && \
-    ln -s /opt/apache-ant-1.9.7/bin/ant /usr/bin/ant && \
-    rm -rf apache-ant-1.9.7-bin.tar.gz
-ENV ANT_HOME /opt/apache-ant-1.9.7
+RUN wget http://mirrors.sonic.net/apache//ant/binaries/apache-ant-1.10.0-bin.tar.gz && \
+    tar -zxf apache-ant-1.10.0-bin.tar.gz -C /opt && \
+    ln -s /opt/apache-ant-1.10.0/bin/ant /usr/bin/ant && \
+    rm -rf apache-ant-1.10.0-bin.tar.gz
+ENV ANT_HOME /opt/apache-ant-1.10.0
 
 # Install Python
 ENV PYTHON_VERSION 2.7.12
