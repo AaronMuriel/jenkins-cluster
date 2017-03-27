@@ -77,4 +77,4 @@ Then, you can start IntelliJ IDEA by running:
 
     docker run -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v <REPOS_DIR>:/workspace intellij-dev-environment
 
-Where <REPOS_DIR> is the directory in the host computer where you have the source code you are working on.
+Where <REPOS_DIR> is the directory in the host computer where you have the source code you are working on. 
