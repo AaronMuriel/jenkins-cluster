@@ -1,6 +1,0 @@
-boto
-jinja2
-requests
-pywinrm
-sshtunnel
-awscli
