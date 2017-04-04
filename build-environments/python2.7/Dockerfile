@@ -1,8 +1,8 @@
 FROM ubuntu:xenial
 MAINTAINER Julian Nonino <noninojulian@outlook.com>
 
-ENV PYTHON_VERSION 2.7.12
-ENV PYTHON_PIP_VERSION 8.1.2
+ENV PYTHON_VERSION 2.7.13
+ENV PYTHON_PIP_VERSION 9.0.1
 
 # Install Python
 RUN apt-get update && \
