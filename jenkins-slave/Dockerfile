@@ -8,7 +8,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Java 8 JDK Update 121
-RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u121-b14/jdk-8u121-linux-x64.tar.gz && \
+RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u121-b13/jdk-8u121-linux-x64.tar.gz && \
     tar -zxf jdk-8u121-linux-x64.tar.gz -C /opt && \
     ln -s /opt/jdk1.8.0_121/bin/java /usr/bin/java && \
     ln -s /opt/jdk1.8.0_121/bin/javac /usr/bin/javac && \
