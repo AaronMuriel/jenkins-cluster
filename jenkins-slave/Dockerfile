@@ -45,8 +45,8 @@ RUN apt-get update && \
     ldconfig && \
     wget -O /tmp/get-pip.py 'https://bootstrap.pypa.io/get-pip.py' && \
     python2 /tmp/get-pip.py "pip==$PYTHON_PIP_VERSION" && \
-    rm //get-pip.py && \
-    pip instmptall --no-cache-dir --upgrade --force-reinstall "pip==$PYTHON_PIP_VERSION" && \
+    rm /tmp/get-pip.py && \
+    pip install --no-cache-dir --upgrade --force-reinstall "pip==$PYTHON_PIP_VERSION" && \
     rm -rf /usr/src/python ~/.cache
 
 # Install default Python PIP dependencies
